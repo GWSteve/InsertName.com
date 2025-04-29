@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../CSS/Global.css">
+    <link rel="stylesheet" href="../CSS/Profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card">
+            <img id="profile-pic" src="" alt="Profile Picture">
+            <h2 id="profile-username"></h2>
+            <p id="profile-email"></p>
+            <p id="profile-phone"></p>
+            <p id="profile-address"></p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to load user data
+        window.onload = function () {
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                document.getElementById("profile-username").textContent = localStorage.getItem("username");
+                document.getElementById("profile-email").textContent = localStorage.getItem("email");
+                document.getElementById("profile-phone").textContent = localStorage.getItem("phone");
+                document.getElementById("profile-address").textContent = localStorage.getItem("address");
+                document.getElementById("profile-pic").src = localStorage.getItem("profilePicture");
+            } else {
+                window.location.href = "login.html"; // Redirect to login if not logged in
+            }
+        }
+
+        // Function to handle logout
+        function logout() {
+            localStorage.clear();
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    </script>
+</body>
+</html>
