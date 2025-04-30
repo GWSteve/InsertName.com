@@ -3,21 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="../CSS/Variables.css">
-    <link rel="stylesheet" href="../CSS/Global.css">
-    <link rel="stylesheet" href="../CSS/Profile.css">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="../CSS/Variables.css"> <!-- Link your Variables.css file -->
+    <link rel="stylesheet" href="../CSS/Global.css"> <!-- Link your global.css file -->
+    <link rel="stylesheet" href="../CSS/Profile.css"> <!-- Link your profile.css file -->
 </head>
+
+<!-- Navigation Bar at the Top -->
+<ul class="navbar">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="profile.html" class="active">Profile</a></li>
+</ul>
+
 <body>
+    <!-- Profile Container -->
     <div class="profile-container">
         <div class="profile-card">
-            <img id="profile-pic" src="" alt="Profile Picture">
-            <h2 id="profile-username"></h2>
-            <p id="profile-email"></p>
-            <p id="profile-phone"></p>
-            <p id="profile-address"></p>
-            <button onclick="logout()">Logout</button>
+            <!-- Profile Header Section -->
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="../" alt="Profile Picture">
+                </div>
+                <div class="profile-info">
+                    <p class="profile-name">John Doe</p>
+                    <p class="profile-email">johndoe@example.com</p>
+                </div>
+            </div>
+
+            <!-- Profile Details Section -->
+            <div class="profile-details">
+                <h3>Profile Details</h3>
+
+                <div class="profile-item">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="john_doe" disabled>
+                </div>
+
+                <div class="profile-item">
+                    <label for="bio">Bio</label>
+                    <input type="text" id="bio" value="Web Developer and Designer" disabled>
+                </div>
+
+                <div class="profile-item">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" value="New York, USA" disabled>
+                </div>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <div class="edit-profile">
+                <button class="edit-btn">Edit Profile</button>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
