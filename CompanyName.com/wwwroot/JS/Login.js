@@ -1,46 +1,69 @@
-// Simulating stored user data (In a real-world scenario, this would be done via API)
-const userDatabase = {
-    username: "Guest",
-    passwordHash: "$2a$10$K.VW4E6TLbQ06WhUn15M6eK5uWV1kUbXFEoZ/J4Pr6YmPH3fU9Uti", // Hashed "Admin"
-    profilePicture: "https://via.placeholder.com/150",
-    email: "guest@example.com",
-    phone: "(123) 456-7890",
-    address: "123 Main Street, Springfield"
-};
+document.addEventListener('DOMContentLoaded', function () {
+    const loginBtn = document.querySelector('.login-btn');
+    const errorMsg = document.getElementById('errorMsg');
 
-// Function to handle the login process
-function handleLogin(event) {
-    event.preventDefault();
+    if (loginBtn) {
+        loginBtn.addEventListener('click', async function (e) {
+            e.preventDefault(); // prevent form submission if inside a <form>
 
-    // Get the username and password from the form
-    const usernameInput = document.getElementById("username").value;
-    const passwordInput = document.getElementById("password").value;
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
 
-    // Simulating user validation with bcrypt
-    if (usernameInput === userDatabase.username) {
-        // Compare the entered password with the hashed password
-        bcrypt.compare(passwordInput, userDatabase.passwordHash, function (err, result) {
-            if (result) {
-                // User is authenticated, redirect to profile page
-                localStorage.setItem("isLoggedIn", true);
-                localStorage.setItem("username", userDatabase.username);
-                localStorage.setItem("profilePicture", userDatabase.profilePicture);
-                localStorage.setItem("email", userDatabase.email);
-                localStorage.setItem("phone", userDatabase.phone);
-                localStorage.setItem("address", userDatabase.address);
+            if (!username || !password) {
+                showError('Username and password are required.');
+                return;
+            }
 
-                // Redirect to profile page
-                window.location.href = "profile.html"; // Make sure profile.html exists
-            } else {
-                // Display error message if password is incorrect
-                alert("Incorrect password. Please try again.");
+            try {
+                const hashedPassword = await hashPassword(password);
+
+                if (validateLogin(username, hashedPassword)) {
+                    // Store session data
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('username', username);
+
+                    // Redirect after short delay
+                    showSuccess('Login successful! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'Profile.html'; // Make sure the path is correct
+                    }, 800);
+                } else {
+                    showError('Invalid username or password.');
+                }
+            } catch {
+                showError('Unexpected error. Please try again.');
             }
         });
-    } else {
-        // Display error message if username is incorrect
-        alert("Incorrect username. Please try again.");
     }
-}
 
-// Attach event listener to the login form
-document.getElementById("login-form").addEventListener("submit", handleLogin);
+    function showError(message) {
+        if (errorMsg) {
+            errorMsg.textContent = message;
+            errorMsg.style.color = 'red';
+        }
+    }
+
+    function showSuccess(message) {
+        if (errorMsg) {
+            errorMsg.textContent = message;
+            errorMsg.style.color = 'green';
+        }
+    }
+
+    function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        return crypto.subtle.digest('SHA-256', data).then(hashBuffer => {
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        });
+    }
+
+    function validateLogin(username, hashedPassword) {
+        const validUsername = "Guest";
+        const validPasswordHash = "074499c939a318d7a822cc1b3ce714bee112c8b2a958fe35e935acb25948d6a3"; // "GuestUser"
+        return username === validUsername && hashedPassword === validPasswordHash;
+    }
+});
