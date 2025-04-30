@@ -1,0 +1,130 @@
+@import url('variables.css');
+
+/* Header */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+    header h1 {
+        font-size: 3rem;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 1rem 0;
+    background-color: #333;
+    list-style: none;
+}
+
+    .navbar li a {
+        text-decoration: none;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .navbar li a:hover,
+        .navbar li a.active {
+            background-color: #1abc9c;
+        }
+
+
+.about {
+    padding: 2rem;
+    background: var(--background-light); /* Light background for the page */
+}
+
+    .about section {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 1.5rem;
+    }
+
+        /* Section Heading */
+        .about section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* About Text Content */
+        .about section p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+    /* Contact Information */
+    .about .contact-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+        .about .contact-info .info-item {
+            width: 45%;
+        }
+
+            .about .contact-info .info-item h3 {
+                font-size: 1.3rem;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+
+            .about .contact-info .info-item p {
+                font-size: 1rem;
+                color: var(--text-light);
+            }
+
+        /* About Us Buttons */
+        .about .contact-info .button-container {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+            .about .contact-info .button-container button {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 1rem 2.5rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                font-weight: 600;
+            }
+
+                .about .contact-info .button-container button:hover {
+                    background-color: var(--primary-dark);
+                }
+
+/* Responsive Design for About Page */
+@media (max-width: 768px) {
+    .about .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .about .contact-info .info-item {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .about .contact-info .button-container button {
+            width: 100%;
+        }
+}
