@@ -1,15 +1,10 @@
-/* Variables.css */
-
 :root {
-    --primary-color: #3498db; /* Softer blue, more modern */
-    --primary-dark: #2980b9; /* Darker shade of the new blue */
-    --background-color: #ecf0f1; /* Light gray background */
-    --background-light: #ffffff; /* White for cards */
-    --text-color: #2c3e50; /* Darker text for readability */
-    --text-light: #7f8c8d; /* Lighter text for secondary info */
-    --input-focus-color: #3498db; /* Highlight color for input fields */
-    --border-color: #bdc3c7; /* Lighter border color */
-    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    --gradient-start: #3498db; /* Gradient starting color */
-    --gradient-end: #8e44ad; /* Gradient ending color */
+    --gradient-background: linear-gradient(135deg, #173a68 0%, #0f172a 100%); /* Smooth gradient from blue to dark blue */
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --text-color: #333;
+    --background-light: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --input-focus-color: #16a085;
+    --border-color: #ddd;
 }

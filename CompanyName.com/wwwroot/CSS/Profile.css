@@ -1,6 +1,5 @@
 /* Profile Page - Updated Color Scheme */
 
-
 /* Header */
 header {
     background-color: #2c3e50;
@@ -171,12 +170,18 @@ header {
             cursor: not-allowed;
         }
 
+/* Hide profile details for hacker and admin */
+.hacker .profile-details,
+.admin .profile-details {
+    display: none;
+}
+
 /* Edit Button */
-.edit-profile {
+.Logout-profile {
     text-align: center;
 }
 
-.edit-btn {
+.Logout-btn {
     background-color: #007bff;
     color: white;
     padding: 1rem 2rem;
@@ -188,15 +193,34 @@ header {
     font-weight: 600;
 }
 
-    .edit-btn:hover {
+    .Logout-btn:hover {
         background-color: #0056b3;
         transform: translateY(-3px);
     }
 
-    .edit-btn:active {
-        background-color: #0056b3;
-        transform: translateY(1px);
-    }
+.:active {
+    background-color: #0056b3;
+    transform: translateY(1px);
+}
+
+/* Optional Sections */
+.admin-download {
+    display: none; /* Default: hidden */
+}
+
+.flag-submission {
+    display: none; /* Default: hidden */
+}
+
+/* Show the download section for admin */
+.admin .admin-download {
+    display: block;
+}
+
+/* Show the flag submission section for hacker */
+.hacker .flag-submission {
+    display: block;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

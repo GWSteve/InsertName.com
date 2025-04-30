@@ -1,33 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginBtn = document.querySelector('.login-btn');
     const errorMsg = document.getElementById('errorMsg');
-
     if (loginBtn) {
         loginBtn.addEventListener('click', async function (e) {
             e.preventDefault(); // prevent form submission if inside a <form>
-
             const usernameInput = document.getElementById('username');
             const passwordInput = document.getElementById('password');
             const username = usernameInput.value.trim();
             const password = passwordInput.value.trim();
-
             if (!username || !password) {
                 showError('Username and password are required.');
                 return;
             }
-
             try {
+                // Hash the password from the input
                 const hashedPassword = await hashPassword(password);
 
-                if (validateLogin(username, hashedPassword)) {
-                    // Store session data
+                if (validateLogin(username, password, hashedPassword)) {
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
-
-                    // Redirect after short delay
                     showSuccess('Login successful! Redirecting...');
                     setTimeout(() => {
-                        window.location.href = 'Profile.html'; // Make sure the path is correct
+                        window.location.href = 'Profile.html'; // adjust if needed
                     }, 800);
                 } else {
                     showError('Invalid username or password.');
@@ -61,9 +55,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function validateLogin(username, hashedPassword) {
-        const validUsername = "Guest";
-        const validPasswordHash = "074499c939a318d7a822cc1b3ce714bee112c8b2a958fe35e935acb25948d6a3"; // "GuestUser"
-        return username === validUsername && hashedPassword === validPasswordHash;
+    function validateLogin(username, plainPassword, hashedInputPassword) {
+        // These are the stored user credentials
+        const users = [
+            {
+                username: "Guest",
+                passwordHash: "561055b66acf8293979f657bb4f1b5803814a03073e03c7435e94278bf411375" // gtrhpkndxLzq8amcvWty
+            },
+            {
+                username: "AdministratorAccount",
+                passwordHash: "521c20d7bc809dd3bdc04255fc5fe6413508e3d9cf3d257d6c991f55f8cae6f6" // gtrhpkndxLzq8amcv
+            },
+            {
+                username: "Hacker",
+                passwordHash: "bda73679ff0137edc8e4ec93be4c9f59344a920e10958cf172d96643f9822f0a"  // Hacker
+            }
+        ];
+
+        const matchingUser = users.find(user => user.username === username);
+        if (!matchingUser) {
+            return false;
+        }
+
+        // Only check for hash match
+        return hashedInputPassword === matchingUser.passwordHash;
     }
 });

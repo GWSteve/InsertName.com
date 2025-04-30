@@ -10,6 +10,7 @@
     <None Include="wwwroot\CSS\Global.css" />
     <None Include="wwwroot\CSS\Variables.css" />
     <None Include="wwwroot\HTML\Produtcs.html" />
+    <None Include="wwwroot\Assets\Hacker.png" />
   </ItemGroup>
 
   <ItemGroup>

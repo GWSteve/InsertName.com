@@ -2,7 +2,7 @@
 
 /* General Page Background Gradient */
 body {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Using color variables for gradient */
+    background: var(--gradient-background); /* Using color variables for gradient */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;

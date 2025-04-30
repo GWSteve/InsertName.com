@@ -1,33 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Page</title>
-    <link rel="stylesheet" href="../CSS/Variables.css"> <!-- Link your Variables.css file -->
-    <link rel="stylesheet" href="../CSS/Global.css"> <!-- Link your global.css file -->
-    <link rel="stylesheet" href="../CSS/Profile.css"> <!-- Link your profile.css file -->
+    <link rel="stylesheet" href="../CSS/Variables.css" />
+    <link rel="stylesheet" href="../CSS/Global.css" />
+    <link rel="stylesheet" href="../CSS/Profile.css" />
 </head>
 
-<!-- Navigation Bar at the Top -->
-<ul class="navbar">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="profile.html" class="active">Profile</a></li>
-</ul>
-
 <body>
+    <!-- Navigation Bar at the Top -->
+    <ul class="navbar">
+        <li><a href="/HTML/Produtcs.html">Products</a></li>
+        <li><a href="/HTML/Contact.html">Products</a></li>
+    </ul>
+
     <!-- Profile Container -->
     <div class="profile-container">
         <div class="profile-card">
             <!-- Profile Header Section -->
             <div class="profile-header">
                 <div class="profile-image">
-                    <img src="../" alt="Profile Picture">
+                    <img id="profilePic" src="../images/default.png" alt="Profile Picture" />
                 </div>
                 <div class="profile-info">
-                    <p class="profile-name">John Doe</p>
-                    <p class="profile-email">johndoe@example.com</p>
+                    <p class="profile-name" id="displayName">Loading...</p>
+                    <p class="profile-email" id="displayEmail">Loading...</p>
                 </div>
             </div>
 
@@ -37,26 +36,39 @@
 
                 <div class="profile-item">
                     <label for="username">Username</label>
-                    <input type="text" id="username" value="john_doe" disabled>
+                    <input type="text" id="username" value="" disabled />
                 </div>
 
                 <div class="profile-item">
                     <label for="bio">Bio</label>
-                    <input type="text" id="bio" value="Web Developer and Designer" disabled>
+                    <input type="text" id="bio" value="" disabled />
                 </div>
 
                 <div class="profile-item">
                     <label for="location">Location</label>
-                    <input type="text" id="location" value="New York, USA" disabled>
+                    <input type="text" id="location" value="" disabled />
+                </div>
+
+                <!-- Hacker-only section (Flag submission) -->
+                <div class="flag-submission hacker-section">
+                    <h3>Submit a Flag</h3>
+                    <input type="text" id="flagInput" placeholder="Enter flag here">
+                    <button id="submitFlag">Submit</button>
+                    <p id="flagStatus"></p>
+                </div>
+
+                <!-- Admin-only section (Downloadable file) -->
+                <div class="admin-download">
+                    <button class="secret-btn">📁 Download Secret File</button>
+                </div>
+
+                <!-- Optional Logout Profile Button -->
+                <div class="Logout-profile">
+                    <button class="Logout-btn">Logout</button>
                 </div>
             </div>
-
-            <!-- Edit Profile Button -->
-            <div class="edit-profile">
-                <button class="edit-btn">Edit Profile</button>
-            </div>
-        </div>
     </div>
 
+    <script src="../JS/Profile.js"></script>
 </body>
 </html>

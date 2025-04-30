@@ -1,0 +1,79 @@
+﻿/* contact.css */
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--gradient-background); /* Using the gradient background defined in Variables.css */
+    color: var(--text-color); /* Text color from Variables.css */
+}
+
+/* Contact Form Container */
+.contact-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+    .contact-container h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #173a68; /* Custom color for header text */
+        margin-bottom: 1.5rem;
+    }
+
+/* Form items */
+.form-item {
+    margin-bottom: 1.5rem;
+}
+
+    .form-item label {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-color); /* Label color from Variables.css */
+    }
+
+    .form-item input,
+    .form-item textarea {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 2px solid var(--border-color); /* Border color from Variables.css */
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-item input:focus,
+        .form-item textarea:focus {
+            border-color: var(--input-focus-color); /* Focus border color from Variables.css */
+        }
+
+/* Submit Button */
+.submit-btn {
+    background-color: var(--primary-color); /* Primary button color from Variables.css */
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    width: 100%;
+}
+
+    .submit-btn:hover {
+        background-color: var(--primary-dark); /* Darker button color on hover */
+        transform: translateY(-3px);
+    }
+
+    .submit-btn:active {
+        background-color: var(--primary-dark); /* Same dark color on click */
+        transform: translateY(1px);
+    }
