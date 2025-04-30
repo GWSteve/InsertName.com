@@ -1,152 +1,109 @@
-﻿/* Login.css */
+/* profile.css */
 
-/* General Body Style */
+/* General Page Background Gradient */
 body {
-    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Using color variables for gradient */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
+    height: 100vh; /* Ensure the body takes up full height */
+    color: var(--text-color); /* Text color */
+}
+
+/* Login Container - Center the login form */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Gradient Background */
+    height: 100vh; /* Ensures it's always centered in the full viewport */
 }
 
-/* Centering the Login Card */
-.login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-}
-
+/* Login Card */
 .login-card {
-    background-color: var(--background-light);
-    padding: 3rem 3.5rem;
+    background-color: var(--background-light); /* Use light background for the card */
     border-radius: 20px;
-    box-shadow: 0 20px 40px var(--shadow-color);
+    box-shadow: 0 15px 40px var(--shadow-color);
     width: 100%;
-    max-width: 450px;
+    max-width: 400px; /* Limit the width of the form */
+    padding: 2rem;
+    box-sizing: border-box; /* Ensures padding is inside the width */
+}
+
+/* Login Form Header */
+.login-header {
     text-align: center;
-    position: relative;
-}
-
-    /* Login Heading Style */
-    .login-card h2 {
-        font-size: 3rem; /* Increased the font size */
-        color: var(--text-color);
-        margin-bottom: 2rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-    }
-
-/* Floating Label Style */
-.input-box {
     margin-bottom: 2rem;
-    position: relative;
 }
 
-    .input-box label {
-        font-size: 1.1rem;
+    .login-header h2 {
+        font-size: 2rem;
         color: var(--text-color);
-        position: absolute;
-        top: -10px;
-        left: 20px;
-        background-color: var(--background-light);
-        padding: 0 8px;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        font-weight: 600;
     }
 
-    /* Input Field Styling */
-    .input-box input {
-        width: 100%; /* Ensure input takes full width of its container */
-        padding: 1.25rem 1.25rem; /* Balanced padding */
+/* Login Form Fields */
+.login-item {
+    margin-bottom: 1.5rem;
+}
+
+    .login-item label {
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .login-item input {
+        width: 100%;
+        padding: 1rem;
         border: 2px solid var(--border-color);
         border-radius: 8px;
-        font-size: 1.1rem;
+        font-size: 1rem;
         outline: none;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
         background-color: #f7f7f7;
-        box-sizing: border-box; /* Include padding and border in the element's width and height */
-        text-align: center; /* Centering text in the input */
+        transition: border-color 0.3s ease;
+        box-sizing: border-box; /* Ensures padding is inside the width */
     }
 
-        /* Focused Input Style */
-        .input-box input:focus {
-            border-color: var(--input-focus-color);
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        .login-item input:focus {
+            border-color: var(--input-focus-color); /* Change focus border to primary color */
         }
 
-            /* Floating Label when Focused */
-            .input-box input:focus + label {
-                top: -22px;
-                font-size: 0.9rem;
-                color: var(--input-focus-color);
-                font-weight: 600;
-            }
-
-/* Button Styling */
-button {
-    width: 100%;
-    padding: 1.2rem;
+/* Login Button */
+.login-btn {
     background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
     border: none;
-    color: #fff;
-    font-size: 1.2rem;
     border-radius: 8px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-weight: 600;
-    margin-top: 2rem;
+    width: 100%; /* Make the button span full width */
 }
 
-    button:hover {
+    .login-btn:hover {
         background-color: var(--primary-dark);
         transform: translateY(-3px);
     }
 
-    button:active {
+    .login-btn:active {
         background-color: var(--primary-dark);
         transform: translateY(1px);
     }
 
-/* Signup Link */
-.signup-link {
+/* Error Message */
+#errorMsg {
+    color: red;
+    font-size: 14px;
     text-align: center;
-    margin-top: 2rem;
-    font-size: 1rem;
-    color: var(--text-light);
+    margin-top: 10px;
 }
 
-    .signup-link a {
-        text-decoration: none;
-        color: var(--primary-color);
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-        .signup-link a:hover {
-            color: var(--primary-dark);
-        }
-
-/* Responsiveness */
+/* Responsive Design for Login Form */
 @media (max-width: 768px) {
     .login-card {
-        padding: 2rem;
-    }
-
-        .login-card h2 {
-            font-size: 2.5rem; /* Slightly smaller font size for smaller screens */
-        }
-
-    .input-box input {
-        padding: 1rem;
-    }
-
-    button {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 }
