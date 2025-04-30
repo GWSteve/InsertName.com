@@ -1,3 +1,107 @@
+Conversation opened. 3 messages. All messages read.
+
+Skip to content
+Using Gmail with screen readers
+in:sent 
+1 of 8
+This new gode github wont kale
+Inbox
+
+Stephen Parkin
+06:55 (5 hours ago)
+ 
+
+Stephen Parkin <gamingwithsteve2@gmail.com>
+Attachments
+06:57 (5 hours ago)
+to me
+
+here
+
+
+
+On Wed, 30 Apr 2025 at 06:55, Stephen Parkin <gamingwithsteve2@gmail.com> wrote:
+
+
+ 7 attachments
+  • Scanned by Gmail
+
+Stephen Parkin <gamingwithsteve2@gmail.com>
+06:57 (5 hours ago)
+to me
+
+also login thing
+
+document.addEventListener('DOMContentLoaded', function () {
+    const loginBtn = document.querySelector('.login-btn');
+    const errorMsg = document.getElementById('errorMsg');
+
+    if (loginBtn) {
+        loginBtn.addEventListener('click', async function (e) {
+            e.preventDefault(); // prevent form submission if inside a <form>
+
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) {
+                showError('Username and password are required.');
+                return;
+            }
+
+            try {
+                const hashedPassword = await hashPassword(password);
+
+                if (validateLogin(username, hashedPassword)) {
+                    // Store session data
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('username', username);
+
+                    // Redirect after short delay
+                    showSuccess('Login successful! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'Profile.html'; // Make sure the path is correct
+                    }, 800);
+                } else {
+                    showError('Invalid username or password.');
+                }
+            } catch {
+                showError('Unexpected error. Please try again.');
+            }
+        });
+    }
+
+    function showError(message) {
+        if (errorMsg) {
+            errorMsg.textContent = message;
+            errorMsg.style.color = 'red';
+        }
+    }
+
+    function showSuccess(message) {
+        if (errorMsg) {
+            errorMsg.textContent = message;
+            errorMsg.style.color = 'green';
+        }
+    }
+
+    function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        return crypto.subtle.digest('SHA-256', data).then(hashBuffer => {
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        });
+    }
+
+    function validateLogin(username, hashedPassword) {
+        const validUsername = "Guest";
+        const validPasswordHash = "074499c939a318d7a822cc1b3ce714bee112c8b2a958fe35e935acb25948d6a3"; // "GuestUser"
+        return username === validUsername && hashedPassword === validPasswordHash;
+    }
+});
+
 ﻿/* Profile.css */
 
 /* Container for profile page */
@@ -125,22 +229,96 @@
         transform: translateY(1px);
     }
 
+/* Login Box Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-light); /* Match background style */
+}
+
+/* Login Box (form container) */
+.login-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Adjusted width for login box */
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Login Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+    .login-form label {
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .login-form input {
+        padding: 1rem;
+        font-size: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        width: 100%;
+        background-color: #f7f7f7;
+        transition: border-color 0.3s ease;
+    }
+
+        .login-form input:focus {
+            border-color: var(--primary-color);
+        }
+
+    /* Submit Button Styling */
+    .login-form button {
+        padding: 1rem;
+        font-size: 1rem;
+        color: white;
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .login-form button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .login-form button:active {
+            background-color: var(--primary-dark);
+            transform: translateY(1px);
+        }
+
+/* Error Message Styling */
+#errorMsg {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .profile-card {
+    .login-box {
         padding: 1.5rem;
     }
 
-    .profile-image img {
-        width: 120px;
-        height: 120px;
+    .login-form label {
+        font-size: 0.9rem;
     }
 
-    .profile-name {
-        font-size: 1.6rem;
-    }
-
-    .profile-email {
-        font-size: 1rem;
+    .login-form input {
+        font-size: 0.9rem;
     }
 }
+Profile.css
+Displaying AboutUs.html.
