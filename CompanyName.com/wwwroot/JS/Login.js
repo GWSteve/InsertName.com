@@ -1,33 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginBtn = document.querySelector('.login-btn');
     const errorMsg = document.getElementById('errorMsg');
+    const loader = document.getElementById('loader');
+
     if (loginBtn) {
         loginBtn.addEventListener('click', async function (e) {
-            e.preventDefault(); // prevent form submission if inside a <form>
+            e.preventDefault(); // Prevent default form submission
             const usernameInput = document.getElementById('username');
             const passwordInput = document.getElementById('password');
+
             const username = usernameInput.value.trim();
             const password = passwordInput.value.trim();
+
             if (!username || !password) {
                 showError('Username and password are required.');
                 return;
             }
+
             try {
-                // Hash the password from the input
                 const hashedPassword = await hashPassword(password);
 
                 if (validateLogin(username, password, hashedPassword)) {
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
+
                     showSuccess('Login successful! Redirecting...');
+
+                    if (loader) {
+                        loader.classList.remove('hidden');
+                    }
+
                     setTimeout(() => {
-                        window.location.href = 'Profile.html'; // adjust if needed
-                    }, 800);
+                        window.location.href = 'Profile.html'; // Change this if needed
+                    }, 2500); // Show loader for 2.5s before redirect
                 } else {
                     showError('Invalid username or password.');
                 }
-            } catch {
+            } catch (err) {
                 showError('Unexpected error. Please try again.');
+                console.error(err);
             }
         });
     }
@@ -37,12 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMsg.textContent = message;
             errorMsg.style.color = 'red';
         }
+        if (loader) {
+            loader.classList.add('hidden');
+        }
     }
 
     function showSuccess(message) {
         if (errorMsg) {
             errorMsg.textContent = message;
             errorMsg.style.color = 'green';
+        }
+        if (loader) {
+            loader.classList.remove('hidden');
         }
     }
 
@@ -56,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function validateLogin(username, plainPassword, hashedInputPassword) {
-        // These are the stored user credentials
         const users = [
             {
                 username: "Guest",
@@ -68,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 username: "Hacker",
-                passwordHash: "bda73679ff0137edc8e4ec93be4c9f59344a920e10958cf172d96643f9822f0a"  // Hacker
+                passwordHash: "bda73679ff0137edc8e4ec93be4c9f59344a920e10958cf172d96643f9822f0a" // Hacker
             }
         ];
 
@@ -77,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
-        // Only check for hash match
         return hashedInputPassword === matchingUser.passwordHash;
     }
 });
