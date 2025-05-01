@@ -12,8 +12,8 @@
 <body>
     <!-- Navigation Bar at the Top -->
     <ul class="navbar">
-        <li><a href="/HTML/Produtcs.html">Products</a></li>
-        <li><a href="/HTML/Contact.html">Products</a></li>
+        <li><a href="/HTML/Products.html">Products</a></li>
+        <li><a href="/HTML/Contact.html">Contact</a></li>
     </ul>
 
     <!-- Profile Container -->
@@ -49,17 +49,21 @@
                     <input type="text" id="location" value="" disabled />
                 </div>
 
-                <!-- Hacker-only section (Flag submission) -->
-                <div class="flag-submission hacker-section">
+                <!-- Admin-only section (Downloadable file) -->
+                <div class="admin-download">
+                    <button class="secret-btn">📁 Download Secret File</button>
+                </div>
+
+                <!-- Flag Submission Section (For Hacker) -->
+                <div class="flag-submission">
                     <h3>Submit a Flag</h3>
                     <input type="text" id="flagInput" placeholder="Enter flag here">
                     <button id="submitFlag">Submit</button>
                     <p id="flagStatus"></p>
-                </div>
 
-                <!-- Admin-only section (Downloadable file) -->
-                <div class="admin-download">
-                    <button class="secret-btn">📁 Download Secret File</button>
+                    <!-- Progress Bar -->
+                    <progress id="flagProgress" value="0" max="4"></progress>
+                    <p id="progressStatus">0/4 Flags Submitted</p>
                 </div>
 
                 <!-- Optional Logout Profile Button -->
@@ -67,8 +71,10 @@
                     <button class="Logout-btn">Logout</button>
                 </div>
             </div>
+        </div>
     </div>
 
     <script src="../JS/Profile.js"></script>
+    <script src="../JS/FlagAuth.js"></script> <!-- Add this if using separate JS for flag submission -->
 </body>
 </html>

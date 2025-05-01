@@ -1,137 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+/* Reset and base styles */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Inter', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
 }
 
 .login-container {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-  padding: 40px 30px;
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
 }
 
-.login-container h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 30px;
-}
+    .login-container h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 30px;
+    }
 
 .input-group {
-  margin-bottom: 20px;
-  position: relative;
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.input-group input {
-  width: 100%;
-  padding: 14px 16px;
-  font-size: 15px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #f9fafb;
-  color: #111827;
-  transition: border 0.2s ease;
-}
+    .input-group input {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: #f9fafb;
+        color: #111827;
+        transition: border 0.2s ease;
+    }
 
-.input-group input:focus {
-  border-color: #3b82f6;
-  outline: none;
-  background: #fff;
-}
+        .input-group input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            background: #fff;
+        }
 
-.input-group .toggle-password {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 14px;
-  color: #6b7280;
-}
+    .input-group .toggle-password {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 14px;
+        color: #6b7280;
+    }
 
 .btn-login {
-  background-color: #3b82f6;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  padding: 14px;
-  width: 100%;
-  cursor: pointer;
-  transition: background 0.2s ease;
+    background-color: #3b82f6;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-.btn-login:hover {
-  background-color: #2563eb;
-}
+    .btn-login:hover {
+        background-color: #2563eb;
+    }
 
 .link {
-  font-size: 14px;
-  margin-top: 16px;
-  color: #3b82f6;
-  text-decoration: none;
-  display: inline-block;
+    font-size: 14px;
+    margin-top: 16px;
+    color: #3b82f6;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
+    .link:hover {
+        text-decoration: underline;
+    }
 
 .signup-text {
-  margin-top: 24px;
-  font-size: 14px;
-  color: #6b7280;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #6b7280;
 }
 
-.signup-text a {
-  color: #3b82f6;
-  text-decoration: none;
-}
+    .signup-text a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
 
-.signup-text a:hover {
-  text-decoration: underline;
-}
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
 
 /* Loader Styles */
 .google-loader {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-  gap: 10px;
-  height: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 10px;
+    height: 20px;
 }
 
-.google-loader.hidden {
-  display: none;
-}
+    .google-loader.hidden {
+        display: none;
+    }
 
-.google-loader .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  animation: bounce 1s infinite ease-in-out;
-}
+    .google-loader .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        animation: bounce 1s infinite ease-in-out;
+    }
 
-.google-loader .red { background-color: #ea4335; animation-delay: 0s; }
-.google-loader .yellow { background-color: #fbbc05; animation-delay: 0.2s; }
-.google-loader .blue { background-color: #4285f4; animation-delay: 0.4s; }
-.google-loader .green { background-color: #34a853; animation-delay: 0.6s; }
+    .google-loader .red {
+        background-color: #ea4335;
+        animation-delay: 0s;
+    }
+
+    .google-loader .yellow {
+        background-color: #fbbc05;
+        animation-delay: 0.2s;
+    }
+
+    .google-loader .blue {
+        background-color: #4285f4;
+        animation-delay: 0.4s;
+    }
+
+    .google-loader .green {
+        background-color: #34a853;
+        animation-delay: 0.6s;
+    }
 
 @keyframes bounce {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
 }
+
+/* Success message with animated dots */
+.success-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.dot-anim {
+    animation: blink 1s infinite steps(1, start);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+    .dot-anim:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .dot-anim:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    .dot-anim:nth-child(4) {
+        animation-delay: 0.6s;
+    }
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Prevent layout shift by reserving space for messages */
+#errorMsg {
+    min-height: 1.5em;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ef4444; /* red for errors */
+    text-align: center;
+}
+
+    #errorMsg.success {
+        color: #10b981; /* green for success */
+    }
