@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="../CSS/Global.css">
+  <link rel="stylesheet" href="../CSS/Variables.css">
+  <link rel="stylesheet" href="../CSS/AccountCreation.css">
+</head>
+<body>
+  <div>
+    <header>
+      <h1>Create Account</h1>
+    </header>
+
+    <div class="container">
+      <h2>Account Creation</h2>
+      <div class="development-note">
+        🚧 This feature is currently under development.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
