@@ -77,3 +77,18 @@ body {
         background-color: var(--primary-dark); /* Same dark color on click */
         transform: translateY(1px);
     }
+.back-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--primary-color, #007bff);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary-dark, #0056b3);
+}
