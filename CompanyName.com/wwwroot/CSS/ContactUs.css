@@ -5,7 +5,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--gradient-background); /* Using the gradient background defined in Variables.css */
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     color: var(--text-color); /* Text color from Variables.css */
 }
 

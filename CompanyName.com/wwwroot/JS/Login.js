@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loginBtn.addEventListener('click', async function (e) {
             e.preventDefault(); // Prevent default form submission
 
-            const usernameInput = document.getElementById('username');  // Correctly target the username input by its ID
+            const usernameInput = document.getElementById('username');
             const passwordInput = document.getElementById('password');
 
             const username = usernameInput.value.trim();
@@ -19,20 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
+                showSuccess(); // Show only dots when logging in
+
                 const hashedPassword = await hashPassword(password);
 
-                if (validateLogin(username, password, hashedPassword)) {
+                // Send request to server for validation
+                const isValid = await validateLogin(username, hashedPassword);
+
+                if (isValid) {
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
 
-                    if (loader) {
-                        loader.classList.remove('hidden');
-                    }
-
-                    // Redirect to profile page after successful login
                     setTimeout(() => {
-                        window.location.href = '/HTML/Profile.html'; // Change this to the correct redirect path if necessary
-                    }, 2500); // Wait for the success message before redirecting
+                        window.location.href = '/HTML/Profile.html';
+                    }, 2000);
                 } else {
                     showError('Invalid username or password.');
                 }
@@ -53,13 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function showSuccess(message) {
+    function showSuccess() {
         if (errorMsg) {
             errorMsg.innerHTML = `
-                <span class="success-text">${message}</span>
                 <span class="dot-anim">.</span><span class="dot-anim">.</span><span class="dot-anim">.</span>
             `;
-            errorMsg.style.color = 'green';
+            errorMsg.style.color = 'transparent'; // Make text color transparent (we only want the dots)
         }
         if (loader) {
             loader.classList.remove('hidden');
@@ -71,30 +70,31 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = encoder.encode(password);
         const hashedBuffer = await crypto.subtle.digest('SHA-256', data);
         const hashArray = Array.from(new Uint8Array(hashedBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toLowerCase(); // Ensure lowercase
     }
 
-    function validateLogin(username, plainPassword, hashedInputPassword) {
-        const users = [
-            {
-                username: "Guest",
-                passwordHash: "561055b66acf8293979f657bb4f1b5803814a03073e03c7435e94278bf411375"  // gtrhpkndxLzq8amcvWty
-            },
-            {
-                username: "AdministratorAccount",
-                passwordHash: "521c20d7bc809dd3bdc04255fc5fe6413508e3d9cf3d257d6c991f55f8cae6f6"  // gtrhpkndxLzq8amcv
-            },
-            {
-                username: "Hacker",
-                passwordHash: "bda73679ff0137edc8e4ec93be4c9f59344a920e10958cf172d96643f9822f0a"  // Hacker
-            }
-        ];
+    async function validateLogin(username, hashedPassword) {
+        try {
+            const response = await fetch('', { // Adjust this URL to your backend API endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    passwordHash: hashedPassword
+                })
+            });
 
-        const matchingUser = users.find(user => user.username === username);
-        if (!matchingUser) {
+            if (response.ok) {
+                const result = await response.json();
+                return result.isValid;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error('Validation error:', error);
             return false;
         }
-
-        return hashedInputPassword === matchingUser.passwordHash;
     }
 });
