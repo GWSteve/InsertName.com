@@ -1,4 +1,4 @@
-/* Global Styles (Variables, etc.) */
+/* Global Styles */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -37,15 +37,18 @@ a {
 /* Profile Container */
 .profile-container {
     width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 40px auto;
+    padding: 30px;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Profile Card */
 .profile-card {
     width: 100%;
     max-width: 900px;
@@ -55,7 +58,7 @@ a {
 .profile-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .profile-image img {
@@ -70,6 +73,14 @@ a {
 }
 
 /* Profile Details */
+.profile-details {
+    margin-bottom: 30px;
+}
+
+.profile-container.hacker .profile-details {
+    display: none;
+}
+
 .profile-details h3 {
     font-size: 24px;
     margin-bottom: 15px;
@@ -94,15 +105,29 @@ a {
 
 /* Flag Submission Section */
 .flag-submission {
-    margin-top: 30px;
+    margin-top: 40px;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
-    .flag-submission input {
+    .flag-submission h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .flag-submission input[type="text"] {
         padding: 10px;
-        width: 60%;
+        width: calc(100% - 130px);
+        max-width: 500px;
         border: 1px solid #ccc;
         border-radius: 5px;
         margin-right: 10px;
+        font-size: 16px;
     }
 
     .flag-submission button {
@@ -112,26 +137,48 @@ a {
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 16px;
     }
 
         .flag-submission button:hover {
             background-color: #16a085;
         }
 
+#flagStatus {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #555;
+}
+
+/* Progress Bar */
 #flagProgress {
     width: 100%;
     height: 20px;
-    margin-top: 15px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #eee;
 }
+
+    #flagProgress .progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #1abc9c;
+        transition: width 0.3s ease-in-out;
+    }
 
 #progressStatus {
     font-size: 16px;
-    margin-top: 5px;
+    margin-top: 8px;
+    color: #333;
+    font-weight: 500;
 }
 
 /* Admin Section */
 .admin-download {
     display: none;
+    margin-top: 30px;
 }
 
 .profile-container.admin .admin-download {
@@ -140,7 +187,7 @@ a {
 
 /* Logout Button */
 .Logout-profile {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .Logout-btn {

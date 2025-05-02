@@ -17,9 +17,10 @@
             <div class="input-group">
                 <input type="text" id="username" placeholder="Username" required>
             </div>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <div class="input-group">
                 <input type="password" id="password" placeholder="Password" required>
-                <span class="toggle-password" onclick="togglePassword()">Show</span>
+                <span class="material-icons toggle-password" onclick="togglePassword()" id="togglePassword">visibility_off</span>
             </div>
             <button type="button" class="btn-login">LOGIN</button>
             <div id="errorMsg"></div>
@@ -36,12 +37,16 @@
 
     <script src="../JS/Login.js"></script>
     <script>
-        // Function to toggle password visibility
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const passwordFieldType = passwordField.type === "password" ? "text" : "password";
-            passwordField.type = passwordFieldType;
-        }
+    // Function to toggle password visibility
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const icon = document.getElementById('togglePassword');
+        const isPassword = passwordField.type === "password";
+
+        passwordField.type = isPassword ? "text" : "password";
+        icon.textContent = isPassword ? "visibility" : "visibility_off";
+    }
     </script>
+
 </body>
 </html>
