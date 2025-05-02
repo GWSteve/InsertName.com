@@ -130,10 +130,11 @@ header {
         transform: translateY(-8px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
-
+    
     .product-card img {
         width: 100%;
-        height: auto;
+        height: 200px; /* Fixed height */
+        object-fit: cover; /* Ensures images fill the area without distortion */
         border-radius: 8px;
         transition: transform 0.3s ease;
     }
