@@ -1,62 +1,54 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const loginBtn = document.querySelector('.btn-login');
-    const errorMsg = document.getElementById('errorMsg');
-    const loader = document.getElementById('loader');
+document.addEventListener("DOMContentLoaded", () => {
+    const loginButton = document.querySelector(".btn-login");
 
-    if (loginBtn) {
-        loginBtn.addEventListener('click', async function (e) {
-            e.preventDefault();
+    loginButton.addEventListener("click", async function (e) {
+        e.preventDefault();
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+        const username = document.getElementById("username").value;
+        const rawPassword = document.getElementById("password").value;
 
-            if (!username || !password) {
-                showError('Username and password are required.');
-                return;
+        if (!username || !rawPassword) {
+            alert("Please enter both username and password.");
+            return;
+        }
+
+        // SHA-256 hash
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+        }
+
+        const hashedPassword = await sha256(rawPassword);
+
+        try {
+            const response = await fetch("../API/Auth.cs", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    passwordHash: hashedPassword
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("Server error or endpoint not found.");
             }
 
-            try {
-                showSuccess();
+            const result = await response.json();
 
-                // Now sending the plain password (no hashing on the frontend)
-                const response = await fetch('/api/Auth/validateLogin', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        Username: username,
-                        Password: password  // Send plain password here
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.isValid) {
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('username', username);
-                    setTimeout(() => window.location.href = '/HTML/Profile.html', 2000);
-                } else {
-                    showError('Invalid username or password.');
-                }
-            } catch (err) {
-                console.error(err);
-                showError('Login failed. Please try again.');
+            if (result.isValid) {
+                localStorage.setItem("username", username);
+                window.location.href = "Profile.html";
+            } else {
+                alert("Invalid login credentials.");
             }
-        });
-    }
-
-    function showError(msg) {
-        if (errorMsg) {
-            errorMsg.textContent = msg;
-            errorMsg.style.color = 'red';
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("An error occurred during login.");
         }
-        loader?.classList.add('hidden');
-    }
-
-    function showSuccess() {
-        if (errorMsg) {
-            errorMsg.innerHTML = `<span class="dot-anim">.</span><span class="dot-anim">.</span><span class="dot-anim">.</span>`;
-            errorMsg.style.color = 'green';
-        }
-        loader?.classList.remove('hidden');
-    }
+    });
 });
