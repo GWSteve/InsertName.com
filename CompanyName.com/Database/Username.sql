@@ -1,4 +1,4 @@
--- Create the Username table
+-- Create the Username table (no password field)
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Username' AND xtype='U')
 BEGIN
     CREATE TABLE Username (
@@ -7,7 +7,7 @@ BEGIN
     );
 END;
 
--- Insert default users if they don't already exist
+-- Insert default users if they don't already exist (no password handling)
 IF NOT EXISTS (SELECT 1 FROM Username WHERE user_id = '550e8400-e29b-41d4-a716-446655440000')
     INSERT INTO Username (user_id, username)
     VALUES ('550e8400-e29b-41d4-a716-446655440000', 'Guest');

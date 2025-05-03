@@ -5,13 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (loginBtn) {
         loginBtn.addEventListener('click', async function (e) {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
 
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-
-            const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
 
             if (!username || !password) {
                 showError('Username and password are required.');
@@ -19,82 +16,47 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
-                showSuccess(); // Show only dots when logging in
+                showSuccess();
 
-                const hashedPassword = await hashPassword(password);
+                // Now sending the plain password (no hashing on the frontend)
+                const response = await fetch('/api/Auth/validateLogin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        Username: username,
+                        Password: password  // Send plain password here
+                    })
+                });
 
-                // Send request to server for validation
-                const isValid = await validateLogin(username, hashedPassword);
+                const data = await response.json();
 
-                if (isValid) {
+                if (data.isValid) {
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
-
-                    setTimeout(() => {
-                        window.location.href = '/HTML/Profile.html';
-                    }, 2000);
+                    setTimeout(() => window.location.href = '/HTML/Profile.html', 2000);
                 } else {
                     showError('Invalid username or password.');
                 }
             } catch (err) {
-                showError('Unexpected error. Please try again.');
-                console.error('Login error:', err);
+                console.error(err);
+                showError('Login failed. Please try again.');
             }
         });
     }
 
-    function showError(message) {
+    function showError(msg) {
         if (errorMsg) {
-            errorMsg.textContent = message;
+            errorMsg.textContent = msg;
             errorMsg.style.color = 'red';
         }
-        if (loader) {
-            loader.classList.add('hidden');
-        }
+        loader?.classList.add('hidden');
     }
 
     function showSuccess() {
         if (errorMsg) {
-            errorMsg.innerHTML = `
-                <span class="dot-anim">.</span><span class="dot-anim">.</span><span class="dot-anim">.</span>
-            `;
-            errorMsg.style.color = 'transparent'; // Make text color transparent (we only want the dots)
+            errorMsg.innerHTML = `<span class="dot-anim">.</span><span class="dot-anim">.</span><span class="dot-anim">.</span>`;
+            errorMsg.style.color = 'green';
         }
-        if (loader) {
-            loader.classList.remove('hidden');
-        }
-    }
-
-    async function hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashedBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashedBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toLowerCase(); // Ensure lowercase
-    }
-
-    async function validateLogin(username, hashedPassword) {
-        try {
-            const response = await fetch('', { // Adjust this URL to your backend API endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    passwordHash: hashedPassword
-                })
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                return result.isValid;
-            } else {
-                return false;
-            }
-        } catch (error) {
-            console.error('Validation error:', error);
-            return false;
-        }
+        loader?.classList.remove('hidden');
     }
 });
