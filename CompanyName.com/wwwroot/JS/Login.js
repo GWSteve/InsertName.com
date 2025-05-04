@@ -1,54 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const loginButton = document.querySelector(".btn-login");
+﻿document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
 
-    loginButton.addEventListener("click", async function (e) {
-        e.preventDefault();
+    if (!form) {
+        alert("❌ loginForm not found!");
+        return;
+    }
 
-        const username = document.getElementById("username").value;
-        const rawPassword = document.getElementById("password").value;
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // prevent page reload
 
-        if (!username || !rawPassword) {
-            alert("Please enter both username and password.");
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!username || !password) {
+            alert("❌ Please enter both username and password.");
             return;
         }
 
-        // SHA-256 hash
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-        }
-
-        const hashedPassword = await sha256(rawPassword);
-
         try {
-            const response = await fetch("../API/Auth.cs", {
+            const response = await fetch("/API/Auth/validateLogin", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username: username,
-                    passwordHash: hashedPassword
-                })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }) // raw password, no hashing here
             });
-
-            if (!response.ok) {
-                throw new Error("Server error or endpoint not found.");
-            }
 
             const result = await response.json();
 
-            if (result.isValid) {
+            if (response.ok && result.isValid) {
+                alert("✅ Login successful!");
                 localStorage.setItem("username", username);
-                window.location.href = "Profile.html";
+                window.location.href = "../HTML/Profile.html";
             } else {
-                alert("Invalid login credentials.");
+                alert("❌ Login failed: " + (result.error || "Invalid credentials."));
             }
-        } catch (error) {
-            console.error("Login error:", error);
-            alert("An error occurred during login.");
+
+        } catch (err) {
+            alert("❌ Could not contact backend.");
+            console.error("Fetch error:", err);
         }
     });
 });
