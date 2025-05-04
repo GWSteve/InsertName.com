@@ -3,9 +3,9 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-app.MapGet("/", async context =>
-{ context.Response.Redirect("/HTML/Produtcs.html"); 
-
+app.MapGet("/", context => {
+    context.Response.Redirect("../HTML/Produtcs.html");
+    return Task.CompletedTask;
 });
 
 app.Run();

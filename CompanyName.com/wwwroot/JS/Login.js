@@ -2,41 +2,42 @@
     const form = document.getElementById("loginForm");
 
     if (!form) {
-        alert("❌ loginForm not found!");
+        console.error("Form not found!");
         return;
     }
 
     form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // prevent page reload
+        event.preventDefault();
 
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value;
 
         if (!username || !password) {
-            alert("❌ Please enter both username and password.");
+            alert("Please enter both fields.");
             return;
         }
 
+        const passwordHash = sha256(password);
+
         try {
-            const response = await fetch("/API/Auth/validateLogin", {
+            const response = await fetch("https://localhost:7237/API/Auth/validateLogin", {  // Ensure this is correct URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }) // raw password, no hashing here
+                body: JSON.stringify({ username, passwordHash })
             });
 
             const result = await response.json();
 
             if (response.ok && result.isValid) {
-                alert("✅ Login successful!");
+                alert("Login successful!");
                 localStorage.setItem("username", username);
                 window.location.href = "../HTML/Profile.html";
             } else {
-                alert("❌ Login failed: " + (result.error || "Invalid credentials."));
+                alert("Login failed: " + (result.error || "Invalid credentials."));
             }
-
         } catch (err) {
-            alert("❌ Could not contact backend.");
-            console.error("Fetch error:", err);
+            console.error("Login error:", err);
+            alert("Error contacting server.");
         }
     });
 });
