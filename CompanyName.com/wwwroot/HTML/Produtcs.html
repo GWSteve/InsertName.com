@@ -19,15 +19,16 @@
         </nav>
     </header>
 
-    <!-- Search Bar -->
-    <section style="text-align: center; margin: 20px 0;">
-        <input 
-            type="text" 
-            id="productSearch" 
-            placeholder="Search products..." 
-            style="padding: 10px; width: 50%; max-width: 400px; font-size: 16px;"
-        />
-    </section>
+    <!-- Search Bar Section -->
+    <div class="search-container">
+        <form action="" method="GET">
+            <input type="text" name="q" class="search-bar" placeholder="Search products..." />
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+    <!-- Vulnerable Search Results -->
+    <div id="search-results"></div>
 
     <main class="product-grid">
         <div class="product-card">
@@ -91,5 +92,15 @@
             <button>Add to Cart</button>
         </div>
     </main>
+
+     <script>
+        // Vulnerable reflection of search query (XSS risk)
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("q");
+        if (query) {
+            document.getElementById("search-results").innerHTML = `Results for: <strong>${query}</strong>`;
+        }
+    </script>
+    
 </body>
 </html>
