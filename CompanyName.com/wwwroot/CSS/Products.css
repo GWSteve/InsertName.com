@@ -7,11 +7,11 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-    header h1 {
-        font-size: 3rem;
-        letter-spacing: 2px;
-        margin: 0;
-    }
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    margin: 0;
+}
 
 /* Navbar */
 .navbar {
@@ -23,19 +23,19 @@ header {
     list-style: none;
 }
 
-    .navbar li a {
-        text-decoration: none;
-        color: white;
-        padding: 15px 25px;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: background-color 0.3s ease;
-    }
+.navbar li a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
 
-        .navbar li a:hover,
-        .navbar li a.active {
-            background-color: #1abc9c;
-        }
+.navbar li a:hover,
+.navbar li a.active {
+    background-color: #1abc9c;
+}
 
 /* Filter and Sort */
 .filters {
@@ -48,19 +48,30 @@ header {
     margin: 20px 0;
 }
 
+/* Search Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 10px 0;
+    padding: 0 20px;
+}
+
 /* Search Bar */
 .search-bar {
     width: 70%;
+    max-width: 500px;
     padding: 1rem 2rem;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 1.1rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .search-bar:focus {
-        border-color: #1abc9c;
-    }
+.search-bar:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+    outline: none;
+}
 
 /* Filter and Sort Buttons */
 .filter-sort-buttons button {
@@ -74,9 +85,9 @@ header {
     transition: background-color 0.3s ease;
 }
 
-    .filter-sort-buttons button:hover {
-        background-color: #0056b3;
-    }
+.filter-sort-buttons button:hover {
+    background-color: #0056b3;
+}
 
 /* Filter and Sort Options */
 .filter-options {
@@ -88,25 +99,25 @@ header {
     border-radius: 6px;
 }
 
-    .filter-options.active {
-        display: block;
-    }
+.filter-options.active {
+    display: block;
+}
 
 .filter-category {
     margin-bottom: 15px;
 }
 
-    .filter-category label {
-        font-weight: 600;
-    }
+.filter-category label {
+    font-weight: 600;
+}
 
-    .filter-category select {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 1rem;
-    }
+.filter-category select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
 
 /* Product Grid */
 .product-grid {
@@ -126,47 +137,47 @@ header {
     text-align: center;
 }
 
-    .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .product-card img {
-        width: 100%;
-        height: 200px; /* Fixed height */
-        object-fit: cover; /* Ensures images fill the area without distortion */
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
 
-    .product-card:hover img {
-        transform: scale(1.05);
-    }
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
 
-    /* Product Title and Price */
-    .product-card h2 {
-        font-size: 1.6rem;
-        margin: 1rem 0;
-        color: #1abc9c;
-    }
+.product-card:hover img {
+    transform: scale(1.05);
+}
 
-    .product-card p {
-        font-size: 1.2rem;
-        color: #007bff;
-        margin-bottom: 1.5rem;
-    }
+/* Product Title and Price */
+.product-card h2 {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+    color: #1abc9c;
+}
 
-    /* Product Buttons */
-    .product-card button {
-        background-color: #1abc9c;
-        color: white;
-        padding: 1rem 2.5rem;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.product-card p {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
 
-        .product-card button:hover {
-            background-color: #16a085;
-        }
+/* Product Buttons */
+.product-card button {
+    background-color: #1abc9c;
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #16a085;
+}
