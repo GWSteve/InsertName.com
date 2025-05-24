@@ -1,204 +1,192 @@
-/* Global Styles */
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
+/* Basic terminal styling */
+.terminal {
+    background-color: #111;
+    color: #33ff00; /* Bright green for text */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    height: 300px; /* Fixed height for terminal */
+    overflow-y: scroll; /* Allow vertical scrolling */
+    border-radius: 8px;
+    white-space: pre-wrap; /* Maintain formatting of line breaks */
+    line-height: 1.5;
+    width: 100%; /* Extend the terminal to fill the profile box */
+    resize: none; /* Disable resizing */
+    border: 1px solid #333; /* Add border to terminal for better visibility */
 }
 
-a {
-    text-decoration: none;
-}
-
-/* Navigation Bar */
-.navbar {
-    list-style: none;
+/* Command input container inside terminal */
+.command-input-container {
     display: flex;
-    justify-content: center;
+    margin-top: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Command input styling - looks like part of the terminal */
+.command-input {
+    width: 90%; /* Make input take most of the space */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #333; /* Match the terminal border */
+    background-color: #111; /* Match terminal background */
+    color: #33ff00; /* Green text for input */
+    font-family: 'Courier New', Courier, monospace; /* Match terminal font */
+    margin-right: 10px;
+    outline: none; /* Remove outline */
+}
+
+.command-submit-btn {
+    padding: 10px 20px;
+    background-color: #16a085;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Command input when focused */
+.command-input:focus {
+    border-color: #33ff00; /* Highlight input border on focus */
+}
+
+/* Navbar */
+.navbar {
+    list-style-type: none;
     background-color: #2c3e50;
-    padding: 15px 0;
+    padding: 10px;
     margin: 0;
+    text-align: center;
 }
 
     .navbar li {
-        margin: 0 15px;
+        display: inline;
+        margin-right: 20px;
     }
 
-        .navbar li a {
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
+    .navbar a {
+        color: white;
+        text-decoration: none;
+    }
 
-            .navbar li a:hover {
-                color: #1abc9c;
-            }
-
-/* Profile Container */
+/* Profile container styling */
 .profile-container {
-    width: 80%;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Profile Card */
 .profile-card {
-    width: 100%;
-    max-width: 900px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 70%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Profile Header */
+/* Profile header styling */
 .profile-header {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .profile-image img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     margin-right: 20px;
 }
 
-.profile-info p {
+.profile-info {
     font-size: 18px;
 }
 
-/* Profile Details */
-.profile-details {
-    margin-bottom: 30px;
-}
-
-.profile-container.hacker .profile-details {
-    display: none;
-}
-
-.profile-details h3 {
+.profile-name {
     font-size: 24px;
-    margin-bottom: 15px;
+    font-weight: bold;
 }
 
+.profile-email {
+    color: #555;
+}
+
+/* Profile details */
 .profile-item {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
     .profile-item label {
         display: block;
-        font-weight: bold;
+        margin-bottom: 5px;
     }
 
     .profile-item input {
         width: 100%;
-        padding: 10px;
+        padding: 8px;
+        font-size: 16px;
         border-radius: 5px;
-        border: 1px solid #ccc;
-        margin-top: 5px;
+        border: 1px solid #ddd;
     }
 
 /* Flag Submission Section */
 .flag-submission {
-    margin-top: 40px;
-    width: 100%;
-    background: #f9f9f9;
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
 }
 
-    .flag-submission h3 {
-        margin-top: 0;
-        margin-bottom: 15px;
-        color: #333;
-    }
-
-    .flag-submission input[type="text"] {
+    .flag-submission input {
+        width: 60%;
         padding: 10px;
-        width: calc(100% - 130px);
-        max-width: 500px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-right: 10px;
         font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-right: 10px;
     }
 
     .flag-submission button {
-        padding: 10px 15px;
-        background-color: #1abc9c;
-        color: #fff;
+        padding: 10px 20px;
+        background-color: #16a085;
+        color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 16px;
     }
 
         .flag-submission button:hover {
-            background-color: #16a085;
+            background-color: #1abc9c;
         }
 
-#flagStatus {
-    margin-top: 10px;
-    font-size: 15px;
-    color: #555;
-}
-
-/* Progress Bar */
-#flagProgress {
-    width: 100%;
-    height: 20px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #eee;
-}
-
-    #flagProgress .progress-bar {
-        height: 100%;
-        width: 0%;
-        background-color: #1abc9c;
-        transition: width 0.3s ease-in-out;
+    .flag-submission #flagResult {
+        margin-top: 10px;
+        color: #e74c3c; /* Red for errors */
+        font-size: 16px;
     }
 
-#progressStatus {
-    font-size: 16px;
-    margin-top: 8px;
-    color: #333;
-    font-weight: 500;
+#flagProgress {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    margin-top: 10px;
 }
 
-/* Admin Section */
-.admin-download {
-    display: none;
-    margin-top: 30px;
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background-color: #16a085;
+    transition: width 0.5s;
 }
 
-.profile-container.admin .admin-download {
-    display: block;
-}
-
-/* Logout Button */
-.Logout-profile {
-    margin-top: 40px;
-}
-
+/* Logout button */
 .Logout-btn {
+    background-color: #007bff;
+    color: white;
     padding: 10px 20px;
-    background-color: #e74c3c;
-    color: #fff;
+    font-size: 16px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
     .Logout-btn:hover {
-        background-color: #c0392b;
+        background-color: #0056b3;
     }

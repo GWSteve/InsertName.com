@@ -1,80 +1,53 @@
-﻿ <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="../CSS/Variables.css" />
-    <link rel="stylesheet" href="../CSS/Global.css" />
-    <link rel="stylesheet" href="../CSS/Profile.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../CSS/Variables.css">
+    <link rel="stylesheet" href="../CSS/Global.css">
+    <link rel="stylesheet" href="../CSS/Profile.css">
 </head>
-
 <body>
-    <!-- Navigation Bar at the Top -->
-    <ul class="navbar">
-        <li><a href="/HTML/Products.html">Products</a></li>
-        <li><a href="/HTML/Contact.html">Contact</a></li>
-    </ul>
-
-    <!-- Profile Container -->
     <div class="profile-container">
         <div class="profile-card">
-            <!-- Profile Header Section -->
             <div class="profile-header">
                 <div class="profile-image">
-                    <img id="profilePic" src="../images/default.png" alt="Profile Picture" />
+                    <img src="../images/default.png" alt="Profile Image">
                 </div>
                 <div class="profile-info">
-                    <p class="profile-name" id="displayName">Loading...</p>
-                    <p class="profile-email" id="displayEmail">Loading...</p>
+                    <div class="profile-name"></div>
+                    <div class="profile-email"></div>
                 </div>
             </div>
 
-            <!-- Profile Details Section -->
-            <div class="profile-details">
-                <h3>Profile Details</h3>
-
-                <div class="profile-item">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" value="" disabled />
-                </div>
-
-                <div class="profile-item">
-                    <label for="bio">Bio</label>
-                    <input type="text" id="bio" value="" disabled />
-                </div>
-
-                <div class="profile-item">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" value="" disabled />
-                </div>
-
-                <!-- Admin-only section (Downloadable file) -->
-                <div class="admin-download">
-                    <button class="secret-btn">📁 Download Secret File</button>
-                </div>
-
-                <!-- Flag Submission Section (For Hacker) -->
-                <div class="flag-submission">
-                    <h3>Submit a Flag</h3>
-                    <input type="text" id="flagInput" placeholder="Enter flag here">
-                    <button id="submitFlag">Submit</button>
-                    <p id="flagStatus"></p>
-
-                    <!-- Progress Bar -->
-                    <progress id="flagProgress" value="0" max="4"></progress>
-                    <p id="progressStatus">0/4 Flags Submitted</p>
-                </div>
-
-                <!-- Optional Logout Profile Button -->
-                <div class="Logout-profile">
-                    <button class="Logout-btn">Logout</button>
+            <div class="terminal-container">
+                <div id="terminal" class="terminal"></div>
+                <div class="command-input-container">
+                    <input type="text" id="commandInput" class="command-input" placeholder="Type a command...">
+                    <button id="commandSubmit" class="command-submit-btn">Submit</button>
                 </div>
             </div>
+
+            <div class="flag-submission">
+                <h3>Submit Flag</h3>
+                <input type="text" id="flagInput" placeholder="Enter flag">
+                <button id="submitFlag">Submit Flag</button>
+                <p id="flagResult"></p>
+                <div id="flagProgress">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="admin-download">
+                <button class="secret-btn" id="downloadSecretFile">Download Secret File</button>
+            </div>
+
+            <button class="Logout-btn" id="logoutBtn">Logout</button>
         </div>
     </div>
 
     <script src="../JS/Profile.js"></script>
-    <script src="../JS/FlagAuth.js"></script> <!-- Add this if using separate JS for flag submission -->
+    <script src="../JS/FlagAuth.js"></script>
 </body>
 </html>

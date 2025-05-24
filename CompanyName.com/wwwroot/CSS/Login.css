@@ -1,214 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
-
-/* Reset and base styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    height: 100vh;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    margin: 0;
 }
 
 .login-container {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     padding: 40px 30px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-    .login-container h2 {
-        font-size: 28px;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 30px;
-    }
-
-.input-group {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-    .input-group input {
-        width: 100%;
-        padding: 14px 16px;
-        font-size: 15px;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        background: #f9fafb;
-        color: #111827;
-        transition: border 0.2s ease;
-    }
-
-        .input-group input:focus {
-            border-color: #3b82f6;
-            outline: none;
-            background: #fff;
-        }
-
-    .input-group .toggle-password {
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        font-size: 14px;
-        color: #6b7280;
-    }
-
-.btn-login {
-    background-color: #3b82f6;
+    width: 380px;
     color: #fff;
-    font-weight: 600;
-    font-size: 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-form h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+}
+
+.login-form input {
+    width: calc(100% - 40px); /* Adjusted width */
+    padding: 18px; /* Larger padding */
+    margin: 12px 0;
     border: none;
-    border-radius: 10px;
-    padding: 14px;
-    width: 100%;
+    border-radius: 15px;
+    font-size: 1.1rem; /* Larger font size */
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
+
+    .login-form input:focus {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .login-form input::placeholder {
+        color: #e0e0e0;
+    }
+
+/* Specific targeting for username and password fields */
+#username, #password {
+    width: calc(100% - 40px); /* Adjusted width */
+    padding: 18px; /* Larger padding */
+    font-size: 1.1rem; /* Larger font size */
+    border-radius: 15px;
+}
+
+/* Login button remains the same size */
+.login-form button {
+    width: calc(100% - 40px);
+    padding: 18px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #00c6ff, #007bff);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s ease;
+    color: white;
+    transition: background 0.3s ease;
 }
 
-    .btn-login:hover {
-        background-color: #2563eb;
+    .login-form button:hover {
+        background: linear-gradient(90deg, #007bff, #0056b3);
     }
 
-.link {
-    font-size: 14px;
-    margin-top: 16px;
-    color: #3b82f6;
-    text-decoration: none;
-    display: inline-block;
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-    .link:hover {
-        text-decoration: underline;
+    .options label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
 
-.signup-text {
-    margin-top: 24px;
-    font-size: 14px;
-    color: #6b7280;
-}
+    .options input[type="checkbox"] {
+        accent-color: #00c6ff;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
 
-    .signup-text a {
-        color: #3b82f6;
+    .options a {
+        color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
+        transition: text-decoration 0.2s;
     }
 
-        .signup-text a:hover {
+        .options a:hover {
             text-decoration: underline;
         }
 
-/* Loader Styles */
-.google-loader {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    gap: 10px;
-    height: 20px;
+.error {
+    color: #ffc9c9;
+    margin-top: 12px;
+    font-size: 0.9rem;
 }
 
-    .google-loader.hidden {
-        display: none;
-    }
+/* Dot loader animation */
+.dot-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
 
-    .google-loader .dot {
-        width: 10px;
-        height: 10px;
+    .dot-loader div {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background: #fff;
         border-radius: 50%;
-        animation: bounce 1s infinite ease-in-out;
+        animation: dot-bounce 0.6s infinite ease-in-out;
     }
 
-    .google-loader .red {
-        background-color: #ea4335;
-        animation-delay: 0s;
-    }
+        .dot-loader div:nth-child(2) {
+            animation-delay: 0.2s;
+        }
 
-    .google-loader .yellow {
-        background-color: #fbbc05;
-        animation-delay: 0.2s;
-    }
+        .dot-loader div:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
-    .google-loader .blue {
-        background-color: #4285f4;
-        animation-delay: 0.4s;
-    }
-
-    .google-loader .green {
-        background-color: #34a853;
-        animation-delay: 0.6s;
-    }
-
-@keyframes bounce {
+@keyframes dot-bounce {
     0%, 80%, 100% {
-        transform: scale(0);
+        transform: scale(0.8);
     }
 
     40% {
-        transform: scale(1);
+        transform: scale(1.4);
     }
 }
-
-/* Success message with animated dots */
-.success-text {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.dot-anim {
-    animation: blink 1s infinite steps(1, start);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-    .dot-anim:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .dot-anim:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    .dot-anim:nth-child(4) {
-        animation-delay: 0.6s;
-    }
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-/* Prevent layout shift by reserving space for messages */
-#errorMsg {
-    min-height: 1.5em;
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ef4444; /* red for errors */
-    text-align: center;
-}
-
-    #errorMsg.success {
-        color: #10b981; /* green for success */
-    }
