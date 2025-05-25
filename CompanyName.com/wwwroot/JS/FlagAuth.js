@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "0770f531647587f5d17c20db614ba65e3335efeec7b530372b7ab710cb311bcf": "flag1", // AdministratorAccount
         "6c8f4b84c26c8dbb5f5fe9b679ba66bb9d82bfe5b90f5b8bceec7d27a0bb0e72": "flag2", // gtrhpkndxLzq8amcvWty
         "b2b9e5436ab6988cc83bbab99d0d935307f9c4083d7745a9462aefb2450d8d16": "flag3", // HiddenProduct
-        "6d3c8ff0223796d78bb23c287d4669941d9296ea041f2f0b3f21d97f10f093e4": "flag4"  // MySuperSecretPassword
+        "64c73861b40aea219763ef930607a3295c16fd3a99b4f1f0ec537c09ec732afb": "flag4"  // MySuperSecretPassword
     };
 
     let submittedFlags = new Set(); // Use a Set to prevent duplicate flag submissions

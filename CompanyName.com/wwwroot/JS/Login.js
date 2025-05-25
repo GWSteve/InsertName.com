@@ -26,7 +26,7 @@
         const hardcodedHashes = {
             "Hacker": "bda73679ff0137edc8e4ec93be4c9f59344a920e10958cf172d96643f9822f0a", // Hacker
             "Guest": "9f132b053488478489310e498069a7c6dd58e285fd1f7b18ddab98a5129643b9", // SuperUser
-            "Administrator": "64c73861b40aea219763ef930607a3295c16fd3a99b4f1f0ec537c09ec732afb" // MySuperSecretPassword
+            "Admin": "64c73861b40aea219763ef930607a3295c16fd3a99b4f1f0ec537c09ec732afb" // MySuperSecretPassword
         };
 
         const passwordHash = await sha256(password);
