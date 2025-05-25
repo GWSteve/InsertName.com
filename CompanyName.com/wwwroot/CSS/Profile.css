@@ -4,6 +4,7 @@
     padding: 10px 20px;
     display: flex;
     justify-content: flex-end;
+    margin: 0;
 }
 
     .navbar li {
@@ -57,44 +58,6 @@
     color: #7f8c8d;
 }
 
-.profile-details {
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-    .profile-details h3 {
-        color: #2c3e50;
-    }
-
-    .profile-details p {
-        margin: 10px 0;
-    }
-
-/* === Admin Section === */
-.admin-only {
-    background-color: #f2f2f2;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 6px;
-}
-
-    .admin-only h3 {
-        color: #e74c3c;
-    }
-
-    .admin-only button {
-        padding: 10px;
-        background-color: #e74c3c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-        .admin-only button:hover {
-            background-color: #c0392b;
-        }
-
 /* === Hacker Section === */
 .hacker-only {
     background-color: #111;
@@ -104,78 +67,91 @@
     margin-top: 20px;
 }
 
-/* === Kali Terminal Emulation === */
+/* === Terminal === */
 .terminal-container {
-    background-color: #000; /* Pure black background */
-    border-radius: 8px;
+    background-color: #000000;
+    border-radius: 10px;
     padding: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    color: #33ff00; /* Bright green text */
+    font-family: 'DejaVu Sans Mono', 'Courier New', Courier, monospace;
+    color: #00FF00;
     overflow-y: auto;
     height: 300px;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-    position: relative;
-}
-
-.terminal-output {
-    height: 220px;
-    overflow-y: auto;
-    white-space: pre-wrap;
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .terminal-line {
-    margin-bottom: 4px;
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-.prompt {
-    color: #00ffff;
-    font-weight: bold;
-}
+    .terminal-line span.prompt {
+        color: #00FF00;
+        font-weight: bold;
+    }
 
-
-.prompt {
-    color: #00ffff; /* Cyan prompt */
-    font-weight: bold;
-}
-
+/* Terminal command input */
 .command-input-container {
+    margin-top: 20px;
     display: flex;
-    align-items: center;
-    margin-top: 10px;
+    width: 100%;
 }
 
 .command-input {
-    flex: 1;
+    width: 85%;
     padding: 10px;
-    background-color: #111;
-    border: 1px solid #444;
-    color: #33ff00;
-    font-family: 'Courier New', Courier, monospace;
+    background-color: #000000;
+    border: 1px solid #333;
+    color: #00FF00;
+    font-family: 'DejaVu Sans Mono', 'Courier New', Courier, monospace;
     font-size: 16px;
     border-radius: 4px;
     outline: none;
 }
 
     .command-input:focus {
-        background-color: #222;
-        border-color: #1abc9c;
+        background-color: #333;
+        border-color: #16a085;
     }
 
 .command-submit-btn {
-    padding: 10px 15px;
+    padding: 10px;
     background-color: #16a085;
     color: white;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     margin-left: 10px;
+    cursor: pointer;
 }
 
     .command-submit-btn:hover {
         background-color: #1abc9c;
     }
 
-/* === Flag Submission Section === */
+/* === Scrollbar Customization === */
+.terminal-output {
+    overflow-y: auto;
+    max-height: 300px;
+    font-family: 'DejaVu Sans Mono', 'Courier New', Courier, monospace;
+    padding-right: 10px;
+}
+
+    .terminal-output::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .terminal-output::-webkit-scrollbar-thumb {
+        background-color: #333;
+        border-radius: 4px;
+    }
+
+    .terminal-output::-webkit-scrollbar-track {
+        background-color: #111;
+    }
+
+/* === Flag Submission === */
 .flag-submission {
     background-color: #f2f2f2;
     padding: 20px;
@@ -208,66 +184,59 @@
         margin-top: 10px;
     }
 
-/* Progress Bar */
-.progress-bar {
+/* === Progress Bar Animation (for <progress> elements) === */
+.progress-container {
     margin-top: 10px;
-    width: 100%;
-    height: 6px;
-    background-color: #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
 }
 
-    .progress-bar::after {
-        content: '';
-        display: block;
+    .progress-container progress {
         width: 100%;
-        height: 100%;
-        background-color: #2ecc71;
-        transition: width 0.5s;
+        height: 10px;
+        border-radius: 4px;
+        appearance: none;
     }
 
-/* === Responsive Design === */
+progress::-webkit-progress-bar {
+    background-color: #ddd;
+    border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #2ecc71;
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* === Custom Animated Progress Bars (for div#progress-bar) === */
+#progress-bar,
+#progressBar {
+    height: 20px;
+    width: 0%;
+    background-color: #2ecc71;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+#progress-text {
+    color: #33ff00;
+    font-family: monospace;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* === Responsive === */
 @media (max-width: 600px) {
     .profile-container {
         width: 95%;
     }
 
-    .command-input {
-        width: 100%;
-    }
-
+    .command-input,
     .command-submit-btn {
         width: 100%;
     }
 
-    .command-input-container {
-        flex-direction: column;
-        gap: 10px;
+    .navbar li {
+        margin-left: 10px;
     }
 }
-
-/* === Miscellaneous Styles === */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-h3 {
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-}
-
-button {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-    button:hover {
-        opacity: 0.8;
-    }

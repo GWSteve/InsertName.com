@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const validFlags = {
         "0770f531647587f5d17c20db614ba65e3335efeec7b530372b7ab710cb311bcf": "flag1", // AdministratorAccount
-        "6c8f4b84c26c8dbb5f5fe9b679ba66bb9d82bfe5b90f5b8bceec7d27a0bb0e72": "flag2", // gtrhpkndxLzq8amcvWty
-        "b2b9e5436ab6988cc83bbab99d0d935307f9c4083d7745a9462aefb2450d8d16": "flag3", // HiddenProduct
-        "64c73861b40aea219763ef930607a3295c16fd3a99b4f1f0ec537c09ec732afb": "flag4"  // MySuperSecretPassword
+        "64c73861b40aea219763ef930607a3295c16fd3a99b4f1f0ec537c09ec732afb": "flag2",  // MySuperSecretPassword
+        "00712df400d55646d05fa28b4f5192573f2910c365137e5b9eaa56c3a5ee40fa": "flag3", // SuperSensitiveDoc
+        "37f87ebe72b14f20af27433e50712f7e1823dcb3b03a17e45506df23b2ec1199": "flag4", // IDidAXSS
+        "49744a97b924ce45a1aeb3e75e616aec9309088657cee95d7f1bee2372a5c7c1":"flag5" // HiddenProduct
     };
 
-    let submittedFlags = new Set(); // Use a Set to prevent duplicate flag submissions
-
+    const submittedFlags = new Set();
     const flagInput = document.getElementById('flagInput');
     const submitFlagButton = document.getElementById('submitFlag');
     const flagStatus = document.getElementById('flagStatus');
 
-    // Create progress elements dynamically
+    // Progress bar container
     const progressContainer = document.createElement('div');
     progressContainer.className = 'progress-container';
     progressContainer.innerHTML = `
@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const hashedFlag = await hashInput(flag);
         if (validFlags[hashedFlag] && !submittedFlags.has(hashedFlag)) {
             submittedFlags.add(hashedFlag);
-            flagStatus.textContent = `Valid Flag: ${validFlags[hashedFlag]}`;
+            flagStatus.textContent = `? Valid Flag: ${validFlags[hashedFlag]}`;
             updateProgress();
         } else if (submittedFlags.has(hashedFlag)) {
-            flagStatus.textContent = 'This flag has already been submitted.';
+            flagStatus.textContent = '?? This flag has already been submitted.';
         } else {
-            flagStatus.textContent = 'Invalid Flag';
+            flagStatus.textContent = '? Invalid Flag';
         }
 
         flagInput.value = '';
@@ -49,9 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const encoder = new TextEncoder();
         const data = encoder.encode(input.trim());
         const buffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(buffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return hashHex.toLowerCase();
+        return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
     function updateProgress() {
@@ -59,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressStatus.textContent = `${submittedFlags.size}/${Object.keys(validFlags).length} Flags Submitted`;
 
         if (submittedFlags.size === Object.keys(validFlags).length) {
-            flagStatus.textContent = '? All flags successfully submitted!';
+            flagStatus.textContent = '?? All flags successfully submitted!';
         }
     }
 });

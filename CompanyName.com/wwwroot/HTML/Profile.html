@@ -7,20 +7,31 @@
     <link rel="stylesheet" href="../CSS/Variables.css" />
     <link rel="stylesheet" href="../CSS/Global.css" />
     <link rel="stylesheet" href="../CSS/Profile.css" />
+    <style>
+        #progress-text {
+            font-family: monospace;
+            font-size: 14px;
+            color: #00ff00;
+            margin-top: 10px;
+            white-space: pre;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar -->
     <ul class="navbar">
         <li><a href="#">Dashboard</a></li>
         <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
 
+    <!-- Profile Section -->
     <div class="profile-container">
         <div class="profile-card">
 
             <!-- ✅ Always Visible: Profile Info -->
             <div class="profile-header">
                 <div class="profile-image">
-                    <img src="../Assets/user.png" alt="User Image">
+                    <img src="../Assets/user.png" alt="User Image" />
                 </div>
                 <div class="profile-info">
                     <div class="profile-name" id="profileName">User</div>
@@ -28,43 +39,50 @@
                 </div>
             </div>
 
-            <!-- Profile Details -->
+            <!-- Profile Details (Visible to all roles) -->
             <div id="profileDetails" class="profile-details">
                 <h3>Profile Details</h3>
                 <p>Username: <span id="usernameDetails">guest</span></p>
                 <p>Email: <span id="emailDetails">guest@example.com</span></p>
             </div>
 
-            <!-- 🔐 Admin Only -->
-            <div id="secretFileSection" class="admin-only" hidden>
+            <!-- 🔐 Admin Only Section (Initially Hidden) -->
+            <div id="secretFileSection" class="admin-only" style="display:none;">
                 <h3>Download Secret File</h3>
                 <button onclick="downloadSecretFile()">Download</button>
             </div>
 
-            <!-- 🧪 Hacker Only -->
-            <div id="terminalSection" class="hacker-only">
+            <!-- 🧪 Hacker Only Terminal Section (Initially Hidden) -->
+            <div id="terminalSection" class="hacker-only" style="display:none;">
                 <div class="terminal-container">
                     <div id="terminalOutput" class="terminal-output"></div>
                     <form id="terminalForm" class="command-input-container">
                         <input type="text" id="commandInput" class="command-input" autocomplete="off" placeholder="Type a command..." />
                         <button type="submit" class="command-submit-btn">Run</button>
                     </form>
+
+                    <!-- 👇 Brute Force Animated Output -->
+                    <div id="progress-bar-container">
+                        <div id="progress-bar" style="width: 0%;"></div>
+                        <div id="progress-text">Attempting... 0%</div>
+                    </div>
                 </div>
             </div>
 
-
-            <!-- 🏴 Flag Submission for Hacker -->
-            <div id="flagSubmission" class="flag-submission" hidden>
-                <h3>Submit Flag</h3>
-                <input type="text" id="flagInput" placeholder="Enter flag" />
-                <button id="submitFlag">Submit</button>
-                <p id="flagResult"></p>
-                <div id="progressBar" class="progress-bar"></div>
+            <!-- 🧠 Hacker-only Flag Submission Section (Initially Hidden) -->
+            <div id="flagSubmission" class="hacker-only" style="display:none;">
+                <h3>Submit a Flag</h3>
+                <div class="flag-submission">
+                    <input type="text" id="flagInput" placeholder="Enter your flag here" />
+                    <button id="submitFlag" class="command-submit-btn">Submit Flag</button>
+                    <p id="flagStatus"></p>
+                </div>
             </div>
 
         </div>
     </div>
 
     <script src="../JS/Profile.js"></script>
+    <script src="../JS/FlagAuth.js"></script>
 </body>
 </html>

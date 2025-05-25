@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\JS\" />
+    <Folder Include="wwwroot\Secret\" />
   </ItemGroup>
 
   <ItemGroup>
